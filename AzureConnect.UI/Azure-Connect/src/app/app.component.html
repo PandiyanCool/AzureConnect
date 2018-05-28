@@ -1,0 +1,92 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+
+  <mat-grid-list cols="1">
+    <mat-grid-tile [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Azure Connect Logs
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+
+              <!-- Level Column -->
+              <ng-container matColumnDef="Level">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Level</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.Level}}</mat-cell>
+              </ng-container>
+
+              <!-- Location Column -->
+              <ng-container matColumnDef="Location">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.Location}}</mat-cell>
+              </ng-container>
+
+              <!-- ResultType Column -->
+              <ng-container matColumnDef="Location">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>ResultType</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.ResultType}}</mat-cell>
+              </ng-container>
+              
+              <!-- Category Column -->
+              <ng-container matColumnDef="Category">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.Category}}</mat-cell>
+              </ng-container>
+
+              <!-- ResultSignature Column -->
+              <ng-container matColumnDef="ResultSignature">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>ResultSignature</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.ResultSignature}}</mat-cell>
+              </ng-container>
+
+              <!-- Time Column -->
+              <ng-container matColumnDef="Time">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Time</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.Time}}</mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50, 100, 250]">
+            </mat-paginator>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>Card Content Here</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
