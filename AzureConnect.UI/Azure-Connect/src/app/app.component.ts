@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   dataSource: MyTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Level', 'Location', 'ResultType', 'Category', 'ResultSignature', 'Time'];
+  displayedColumns = ['Level', 'ResultType', 'Time', 'ResultSignature'];
 
 
   ngOnInit() {
