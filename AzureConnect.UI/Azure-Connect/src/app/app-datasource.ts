@@ -2,7 +2,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { IEvent } from './shared';
+import { IEvent, DataService } from './shared';
+import { OnInit } from '@angular/core';
 
 // TODO: Replace this with your own data model type
 export interface MyTableItem {
@@ -56,12 +57,21 @@ const EXAMPLE_DATA_2: IEvent[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class MyTableDataSource extends DataSource<IEvent> {
+export class MyTableDataSource extends DataSource<IEvent> implements OnInit {
+
   data: IEvent[] = EXAMPLE_DATA_2;
 
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
+  ngOnInit() {
+
+  }
+
+
+
+
+  constructor(private paginator: MatPaginator, private sort: MatSort, private dataService: DataService) {
     super();
   }
+
 
   /**
    * Connect this data source to the table. The table will only update when

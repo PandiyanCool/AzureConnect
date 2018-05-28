@@ -19,25 +19,22 @@ export class AppComponent implements OnInit {
   dataSource: MyTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Level', 'Location', 'ResultType', 'Category', 'Time', 'ResultSignature'];
+  displayedColumns = ['Level', 'Location', 'ResultType', 'Category', 'ResultSignature', 'Time'];
 
-  cards = [
-    { title: 'Card 1', cols: 2, rows: 1 },
-    { title: 'Card 2', cols: 1, rows: 1 },
-    { title: 'Card 3', cols: 1, rows: 2 },
-    { title: 'Card 4', cols: 1, rows: 1 }
-  ];
 
   ngOnInit() {
-    this.dataSource = new MyTableDataSource(this.paginator, this.sort);
     this.getEventData();
+    this.dataSource = new MyTableDataSource(this.paginator, this.sort, this.dataService);
   }
+
 
   getEventData(): Observable<IEvent> {
     let result;
     this.dataService.getEventList().subscribe(x => {
-      console.log(x);
+      this.result = x;
+      console.log(this.result);
     });
     return result;
   }
+
 }
