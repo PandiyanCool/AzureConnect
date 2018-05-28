@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using AzureServiceConnect.Models;
 
 namespace AzureServiceConnect.Controllers
 {

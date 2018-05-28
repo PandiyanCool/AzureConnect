@@ -23,18 +23,16 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getEventData();
-    this.dataSource = new MyTableDataSource(this.paginator, this.sort, this.dataService);
-  }
 
-
-  getEventData(): Observable<IEvent> {
-    let result;
     this.dataService.getEventList().subscribe(x => {
       this.result = x;
       console.log(this.result);
+      this.dataSource = new MyTableDataSource(this.paginator, this.sort, this.dataService);
+      this.dataSource.data = x;
     });
-    return result;
+
+
   }
+
 
 }

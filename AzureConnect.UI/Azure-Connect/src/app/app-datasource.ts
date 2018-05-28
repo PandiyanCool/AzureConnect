@@ -47,8 +47,7 @@ const EXAMPLE_DATA_2: IEvent[] = [
     ResourceId: '/STORAGEACCOUNTS/STORAGEACCOUNTAZCONNECT',
     ResultSignature: 'Started.',
     ResultType: 'Start',
-    Time: '2018-05-27T18:34:35.3406129Z'
-
+    Time: '2018-05-27T00:00:00'
   }
 ];
 
@@ -64,9 +63,6 @@ export class MyTableDataSource extends DataSource<IEvent> implements OnInit {
   ngOnInit() {
 
   }
-
-
-
 
   constructor(private paginator: MatPaginator, private sort: MatSort, private dataService: DataService) {
     super();
@@ -124,6 +120,7 @@ export class MyTableDataSource extends DataSource<IEvent> implements OnInit {
       switch (this.sort.active) {
         case 'Level': return compare(a.Level, b.Level, isAsc);
         case 'Location': return compare(+a.Location, +b.Location, isAsc);
+        case 'Time': return compare(+a.Time, +b.Time, isAsc);
         default: return 0;
       }
     });

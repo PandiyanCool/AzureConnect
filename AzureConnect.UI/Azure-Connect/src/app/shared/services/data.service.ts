@@ -13,9 +13,14 @@ export class DataService {
 
     constructor(private http: HttpClient) { }
 
-    getEventList(): Observable<IEvent> {
+    getEventList(): Observable<IEvent[]> {
         return this.httpGet(`${this.baseURL}/events`)
-            .pipe(map((res) => res.data));
+            .pipe(
+                map
+                    (
+                    (res) => res
+                    )
+            );
 
     }
 
@@ -28,10 +33,7 @@ export class DataService {
 
         return new HttpHeaders({
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            // 'Access-Control-Allow-Headers': 'Content-Type',
-            // 'Access-Control-Allow-Methods': 'GET',
-            // 'Access-Control-Allow-Origin': '*'
+            'Accept': 'application/json'
         });
 
     }
